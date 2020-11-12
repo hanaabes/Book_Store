@@ -1,44 +1,58 @@
+import java.sql.SQLException;
+import java.sql.Date;
 import java.util.Vector;
+import com.mysql.jdbc.ResultSet;
+
+import connexionBD.Mycnx;
 
 public class Administrateur extends Utilisateur  {
 	
+	public static Vector<Livre> l = new Vector<Livre>(); // tableau de livre
 	
-	Administrateur(String i, String n, String p, String a, String m, String num) {
+	
+	public Administrateur(String i, String n, String p, String a, String m, String num) {
 		super(i, n, p, a, m, num);
 	}
-	public static Vector<Produit> produits = new Vector<Produit>(); // tableau des produits 
-
-public void ajouter_Produit(Produit p1)
-{
-	produits.addElement(p1);
-	}
-
-public void Supprimer_Produit(Produit p2) 
-{
-	produits.remove(p2);
-	}
-
-public void modifier_Produit(Produit p1,String car , double p, int q, String r)
-
-{ if (produits.contains(p1))
+	// Les Méthodes effectuées par l'administrateur
 	
-	p1.setCaracteristique(car);
-	p1.setPrix_P(p);
-	p1.setQuantité_P(q);
-	p1.setRef_P(r);
+	// gere les livres 
+public void ajouter_livre(Livre l1)
+{
+	l.addElement(l1);
+	}
+
+public void Supprimer_livre(Livre l2) 
+{
+	l.remove(l2);
+	}
+
+public void modifier_livre(Livre l1,String car , double p, int q, String r,String t, String a ,Date d)
+
+{ if (l.contains(l1))
+	
+	l1.setCaracteristique(car);
+l1.setAuthor_liv(a);
+l1.setPrix_liv(p);
+l1.setQuantité_liv(q);
+l1.setRef_liv(r);
+l1.setReleaseDate(d);
+l1.setTitre_liv(t);
 	
 }
 
-public void afficher_ttProduits()
+public void afficher_ttlivres()
 
-{ for(int i=0;i<produits.size();i++)
+{ for(int i=0;i<l.size();i++)
 {
-	 System.out.println(produits.elementAt(i));
+	 System.out.println(l.elementAt(i));
 }}
+ 
+
+
 // gerer les utilisateurs 
 
  public static Vector<Utilisateur> utilisateurs = new Vector<Utilisateur>();
-	
+
 public void ajouter_u(Utilisateur u1)
 {utilisateurs.addElement(u1);}
 
@@ -66,5 +80,5 @@ public void afficher_ttUtilisateurs()
 {
  System.out.println(utilisateurs.elementAt(i));
 }}
-	
+
 }
